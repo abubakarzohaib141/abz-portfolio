@@ -16,6 +16,8 @@ interface Project {
   category: 'frontend' | 'agent' | 'chatbot'
 }
 
+type FilterCategory = 'all' | Project['category']
+
 const projects: Project[] = [
   {
     title: "E-commerce Platform",
@@ -61,14 +63,12 @@ const projects: Project[] = [
 
 const categoryIcons = {
   frontend: Palette,
-  backend: Server,
-  fullstack: Code,
   agent: Cpu,
   chatbot: MessageSquare
-}
+} as const
 
 export default function ProjectsSection() {
-  const [filter, setFilter] = useState<'all' | 'frontend' | 'agent' | 'chatbot'>('all')
+  const [filter, setFilter] = useState<FilterCategory>('all')
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -93,10 +93,10 @@ export default function ProjectsSection() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="flex flex-wrap justify-center gap-4 mb-8"
         >
-          {['all', 'frontend',  'agent', 'chatbot'].map((category) => (
+          {(['all', 'frontend', 'agent', 'chatbot'] as const).map((category) => (
             <button
               key={category}
-              onClick={() => setFilter(category as any)}
+              onClick={() => setFilter(category)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 ${
                 filter === category 
                   ? 'bg-blue-600 text-white' 
