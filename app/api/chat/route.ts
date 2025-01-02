@@ -33,7 +33,8 @@ export async function POST(req: Request) {
     }), {
       headers: { 'Content-Type': 'application/json' },
     })
-  } catch (error) {
+  } catch (err) {
+    console.error('Chat error:', err)
     return new Response(JSON.stringify({ error: 'Failed to process chat message' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
