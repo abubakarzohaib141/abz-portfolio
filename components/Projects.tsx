@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { ExternalLink, Github, Code, Palette, Server, MessageSquare, Bot, Cpu } from 'lucide-react'
+import { ExternalLink, Github, Code, Palette, Server, MessageSquare, Cpu } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
